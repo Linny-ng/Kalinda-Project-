@@ -47,21 +47,21 @@ class _MainNavigationWrapperState extends State<MainNavigationWrapper> {
             SalomonBottomBarItem(
               icon: const Icon(Icons.workspace_premium),
               title: const Text("Mentorship"),
-              selectedColor: Colors.purple,
+              selectedColor: primaryColour,
             ),
 
             /// Community
             SalomonBottomBarItem(
               icon: const Icon(Icons.people),
               title: const Text("Community"),
-              selectedColor: Colors.orange,
+              selectedColor: primaryColour,
             ),
 
             /// Profile
             SalomonBottomBarItem(
               icon: const Icon(Icons.person),
               title: const Text("Profile"),
-              selectedColor: Colors.teal,
+              selectedColor: primaryColour,
             ),
           ],
         ),
