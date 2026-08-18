@@ -7,10 +7,7 @@
         {
             "name": "flutter_application_1",
             "request": "launch",
-            "type": "dart",
-            "program":   "lib/views/main.dart"
-
-instead of:
+            "type": "dart"
         },
         {
             "name": "flutter_application_1 (profile mode)",

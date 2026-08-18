@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/configs/colors.dart';
+import 'package:flutter_application_1/views/login.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_navigation/src/extension_navigation.dart';
 
@@ -14,11 +15,12 @@ class _ProfileState extends State<Profile> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: secondaryColour,
       appBar: AppBar(
         centerTitle: true,
         title: Text("My Profile"),
-        backgroundColor: secondaryColour,
-        foregroundColor: const Color.fromARGB(255, 250, 247, 245),
+        backgroundColor: primaryColour,
+        foregroundColor: secondaryColour,
         actions: [
           IconButton(
             onPressed: () {
@@ -34,10 +36,12 @@ class _ProfileState extends State<Profile> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              const CircleAvatar(
+              CircleAvatar(
+                backgroundImage: NetworkImage(
+                  "http://localhost/kalindayouth/profile_pictures/jane.png${store.read("image")}",
+                ),
                 radius: 60,
                 backgroundColor: secondaryColour,
-                child: Icon(Icons.person, size: 70, color: Colors.white),
               ),
 
               const SizedBox(height: 20),

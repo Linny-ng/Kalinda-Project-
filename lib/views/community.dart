@@ -1,10 +1,4 @@
-import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:flutter/material.dart';
-// ignore: unused_import
-import 'package:flutter_application_1/configs/colors.dart';
-import 'package:flutter_application_1/views/home.dart';
-import 'package:flutter_application_1/views/mentorship.dart';
-import 'package:flutter_application_1/views/profile.dart';
 
 class Community extends StatefulWidget {
   const Community({super.key});
@@ -17,39 +11,6 @@ class _CommunityState extends State<Community> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      bottomNavigationBar: CurvedNavigationBar(
-        backgroundColor: Colors.blueAccent,
-        items: <Widget>[
-          Icon(Icons.home, size: 15),
-          Icon(Icons.pentagon_rounded, size: 15),
-          Icon(Icons.people, size: 15),
-          Icon(Icons.person, size: 15),
-        ],
-        onTap: (index) {
-          if (index == 0) {
-            Navigator.push(
-              context,
-              MaterialPageRoute(builder: (context) => const HomeScreen()),
-            );
-          }
-          if (index == 1) {
-            Navigator.push(
-              context,
-              MaterialPageRoute(
-                builder: (context) => const Mymentorshipprogram(),
-              ),
-            );
-          }
-          if (index == 3) {
-            Navigator.push(
-              context,
-              MaterialPageRoute(builder: (context) => const Profile()),
-            );
-          }
-          //Handle button tap
-        },
-      ),
-
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,

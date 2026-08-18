@@ -17,8 +17,8 @@ class _SettingsState extends State<Settings> {
       appBar: AppBar(
         centerTitle: true,
         title: Text("Settings"),
-        backgroundColor: secondaryColour,
-        foregroundColor: const Color.fromARGB(255, 250, 247, 245),
+        backgroundColor: primaryColour,
+        foregroundColor: secondaryColour,
         actions: [],
       ),
       body: Center(
@@ -71,8 +71,8 @@ class _SettingsState extends State<Settings> {
                 Divider(),
 
                 ListTile(
-                  leading: Icon(Icons.logout, color: Colors.red),
-                  title: Text("Logout", style: TextStyle(color: Colors.red)),
+                  leading: Icon(Icons.logout, color: Colors.brown),
+                  title: Text("Logout", style: TextStyle(color: Colors.brown)),
                   onTap: () {
                     Get.toNamed("/");
                     // Logout
