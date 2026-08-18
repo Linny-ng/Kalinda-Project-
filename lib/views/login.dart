@@ -1,3 +1,4 @@
+import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/configs/colors.dart';
 import 'package:get/get_core/src/get_main.dart';
@@ -17,6 +18,8 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> {
+  bool isLoading = false;
+
   @override
   Widget build(BuildContext context) {
     usernameController.text = store.read("username") ?? "";
@@ -39,12 +42,10 @@ class _LoginScreenState extends State<LoginScreen> {
               children: [Image.asset("logo.png", height: 200, width: 400)],
             ),
             SizedBox(height: 15),
-
             Text(
-              "Username:",
+              "Email or Phone:",
               style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
             ),
-
             SizedBox(
               width: 500,
               child: TextField(
@@ -57,7 +58,6 @@ class _LoginScreenState extends State<LoginScreen> {
                 ),
               ),
             ),
-
             SizedBox(height: 20),
             Text(
               "Password:",
@@ -67,11 +67,11 @@ class _LoginScreenState extends State<LoginScreen> {
                 color: const Color.fromARGB(255, 19, 14, 7),
               ),
             ),
-
             SizedBox(
               width: 500,
               child: TextField(
                 controller: passwordController,
+                obscureText: true,
                 decoration: InputDecoration(
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(50),
@@ -80,35 +80,27 @@ class _LoginScreenState extends State<LoginScreen> {
                 ),
               ),
             ),
-
             SizedBox(height: 20),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 MaterialButton(
-                  onPressed: () async {
-                    if (usernameController.text.isEmpty ||
-                        passwordController.text.isEmpty) {
-                      Get.snackbar("Error", "Please fill all the fields");
-                      return;
-                    } else {
-                      var response = await http.get(
-                        Uri.parse(
-                          "http://localhost/kalindayouth/login.php?phonenumber=${usernameController.text}&password=${passwordController.text}",
-                        ),
-                      );
-                    }
-
-                    store.write("username", usernameController.text);
-                    Get.toNamed("/home");
-                    Get.snackbar("Success", "Logged in successfully");
-                  },
+                  onPressed: isLoading ? null : _handleLogin,
                   color: primaryColour,
                   hoverColor: const Color.fromARGB(255, 107, 75, 16),
                   hoverElevation: 10.0,
                   highlightElevation: 20.0,
                   height: 45,
-                  child: Text("logIn"),
+                  child: isLoading
+                      ? SizedBox(
+                          height: 20,
+                          width: 20,
+                          child: CircularProgressIndicator(
+                            strokeWidth: 2,
+                            color: Colors.white,
+                          ),
+                        )
+                      : Text("logIn"),
                 ),
               ],
             ),
@@ -122,7 +114,6 @@ class _LoginScreenState extends State<LoginScreen> {
                     style: TextStyle(color: primaryColour),
                   ),
                   onTap: () {
-                    // code to navigate to registration page
                     Get.toNamed("/register");
                   },
                 ),
@@ -137,5 +128,49 @@ class _LoginScreenState extends State<LoginScreen> {
         ),
       ),
     );
+  }
+
+  Future<void> _handleLogin() async {
+    if (usernameController.text.isEmpty || passwordController.text.isEmpty) {
+      Get.snackbar("Error", "Please fill all the fields");
+      return;
+    }
+
+    setState(() {
+      isLoading = true;
+    });
+
+    try {
+      var response = await http.get(
+        Uri.parse(
+          "http://localhost/kalindayouth/login.php?phonenumber=${usernameController.text.trim()}&password=${passwordController.text.trim()}",
+        ),
+      );
+
+      var responseBody = jsonDecode(response.body);
+
+      if (responseBody['success'] == 1) {
+        var user = responseBody['user'] ?? responseBody['data'];
+
+        // Save user details to GetStorage
+        store.write("user_id", user['id']);
+        store.write("username", usernameController.text.trim());
+        store.write("image", user['picture'] ?? user['image'] ?? "");
+
+        Get.offNamed("/home");
+        Get.snackbar("Success", "Logged in successfully");
+      } else {
+        Get.snackbar(
+          "Error",
+          responseBody['message'] ?? "Invalid email/phone or password",
+        );
+      }
+    } catch (e) {
+      Get.snackbar("Error", "An error occurred during login: $e");
+    } finally {
+      setState(() {
+        isLoading = false;
+      });
+    }
   }
 }

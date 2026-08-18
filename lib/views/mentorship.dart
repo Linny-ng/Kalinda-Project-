@@ -1,9 +1,11 @@
-import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:flutter/material.dart';
 // ignore: unused_import
 import 'package:flutter_application_1/configs/colors.dart';
+// ignore: unused_import
 import 'package:flutter_application_1/views/community.dart';
+// ignore: unused_import
 import 'package:flutter_application_1/views/home.dart';
+// ignore: unused_import
 import 'package:flutter_application_1/views/profile.dart';
 
 class Mymentorshipprogram extends StatefulWidget {

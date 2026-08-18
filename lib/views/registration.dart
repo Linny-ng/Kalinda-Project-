@@ -33,8 +33,8 @@ class _SignupScreenState extends State<SignupScreen> {
       appBar: AppBar(
         centerTitle: true,
         title: Text("kalinda youth"),
-        backgroundColor: secondaryColour,
-        foregroundColor: const Color.fromARGB(255, 250, 247, 245),
+        backgroundColor: primaryColour,
+        foregroundColor: secondaryColour,
         actions: [
           IconButton(onPressed: () {}, icon: Icon(Icons.settings)),
 
@@ -148,7 +148,7 @@ class _SignupScreenState extends State<SignupScreen> {
 
                           var response = await http.post(
                             Uri.parse(
-                              "http://localhost/kalindayouth/create_user.php?",
+                              "http://localhost/kalindayouth/create_user.php",
                             ),
                             body: {
                               "firstname": firstnameController.text,
@@ -156,6 +156,8 @@ class _SignupScreenState extends State<SignupScreen> {
                               "phonenumber": phonenumberController.text,
                               "email": emailController.text,
                               "password": passwordController.text,
+                              "confirm_password":
+                                  confirmPasswordController.text,
                             },
                           );
                           setState(() {

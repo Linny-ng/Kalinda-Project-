@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/configs/colors.dart';
+import 'package:flutter_application_1/configs/storage.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_navigation/src/extension_navigation.dart';
 
@@ -34,48 +35,34 @@ class _SettingsState extends State<Settings> {
                   "Settings",
                   style: TextStyle(fontSize: 28, fontWeight: FontWeight.bold),
                 ),
-
                 SizedBox(height: 20),
-
                 ListTile(
                   leading: Icon(Icons.person),
                   title: Text("Account"),
                   trailing: Icon(Icons.arrow_forward_ios),
-                  onTap: () {
-                    // Open Account Settings
-                  },
+                  onTap: () {},
                 ),
-
                 Divider(),
-
                 ListTile(
                   leading: Icon(Icons.notifications),
                   title: Text("Notifications"),
                   trailing: Icon(Icons.arrow_forward_ios),
-                  onTap: () {
-                    // Open Notification Settings
-                  },
+                  onTap: () {},
                 ),
-
                 Divider(),
-
                 ListTile(
                   leading: Icon(Icons.lock),
                   title: Text("Privacy"),
                   trailing: Icon(Icons.arrow_forward_ios),
-                  onTap: () {
-                    // Open Privacy Settings
-                  },
+                  onTap: () {},
                 ),
-
                 Divider(),
-
                 ListTile(
                   leading: Icon(Icons.logout, color: Colors.brown),
                   title: Text("Logout", style: TextStyle(color: Colors.brown)),
                   onTap: () {
-                    Get.toNamed("/");
-                    // Logout
+                    store.erase();
+                    Get.offAllNamed("/");
                   },
                 ),
               ],

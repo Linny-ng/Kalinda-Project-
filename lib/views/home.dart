@@ -1,11 +1,9 @@
 // ignore_for_file: deprecated_member_use
 
-import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/configs/colors.dart';
+// ignore: unused_import
 import 'package:flutter_application_1/views/community.dart';
-import 'package:flutter_application_1/views/mentorship.dart';
-import 'package:flutter_application_1/views/profile.dart';
 // ignore: unused_import
 import 'package:get/get_connect.dart';
 
