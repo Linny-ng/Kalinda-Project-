@@ -125,11 +125,7 @@ class _ProfileState extends State<Profile> {
 
                     Text(
                       roleTitle,
-                      style: TextStyle(
-                        fontSize: 16,
-                        color: Colors
-                            .grey[700], // Changed so it is visible against light backgrounds
-                      ),
+                      style: TextStyle(fontSize: 16, color: Colors.grey[700]),
                     ),
 
                     const SizedBox(height: 30),

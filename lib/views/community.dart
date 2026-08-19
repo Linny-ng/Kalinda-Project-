@@ -87,9 +87,12 @@ class _CommunityState extends State<Community> {
                     ),
                     SizedBox(width: 12),
                     Expanded(
-                      child: Text(
-                        "Share an update or question...",
-                        style: TextStyle(color: Colors.grey.shade600),
+                      child: TextField(
+                        decoration: InputDecoration(
+                          hintText: "Share an update or question...",
+                          hintStyle: TextStyle(color: Colors.grey.shade600),
+                          border: InputBorder.none,
+                        ),
                       ),
                     ),
                     IconButton(
